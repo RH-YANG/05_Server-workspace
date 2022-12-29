@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	ul {
+		list-style: none;
+		line-height : 250%;
+	} 
+</style>
+</head>
+<body>
+	<h1>Get방식으로 요청 후 응답페이지 받아보기</h1>
+	<p>
+		get방식 특징 <br>
+		특징1) GET방식으로 요청시 URL의 Header영역에 데이터들을 포함시켜 요청 <br>
+		=>사용자가 입력한 값(데이터)들이 url에 노출된다 <br>
+		=>보안유지가 불가능함 <br>
+		특징2) Header영역은 전송하는 길이에 제한이 있음. <br>
+		=>방데한 데이터 담았을 경우 초과된 데이터는 절단되서 넘어감<br>
+		=>즉, 게시판 작성과 같은경우 GET방식에 부적합하다 <br>
+		특징3) 장점: url에 데이터가 노출되어있기 때문에 북마크
+		(즐겨찾기, url을 저장해놨다가 재요청 하는것)가능하다. <br>
+		=> 즉, 검색기능 같은 경우 GET 방식에 적합하다.
+	</p>
+	<h2>개인 정보 입력</h2>
+	
+	<!-- 
+		form내의 제출버튼(submit)클릭시 
+		form태그의 속성 중 action에 작성되어있는 url로 요청됨
+		(요청시 사용자가 입력한 값들도 넘어간다)
+		즉, url로는 해당 요청을 받아서 처리해주는 Controller측(Servlet)을 작성해주면 된다.
+		즉, 어떤 Servlet을 요청할껀지 그 Servlet만의 url mapping값을 작성해주면 됨.
+		이때, servlet mapping값(test1.do)은 반드시 contextRoot명(01_Servlet) 뒤에 작성되어야함.
+		사이에 별도의 다른 경로가 있어서는 안된다는 말
+		http://localhost:9999/01_Servlet/test1.do
+	 -->
+	<form action="/01_Servlet/test1.do" method="get">
+		<ul>
+			<li>
+				이름 : <input type="text" id="name" name="name">
+			</li>
+			<li>
+				성별 : 
+				<input type="radio" name="gender" value="M"> 남자
+				<input type="radio" name="gender" value="F"> 여자
+			</li>
+			<li>
+				나이 : 
+				<input type="number" name="age">
+			</li>
+			<li>
+				거주지 : 
+				<select name="city" id="">
+					<option>서울</option>
+					<option>경기도</option>
+					<option>강원도</option>
+					<option>충청도</option>
+					<option>경상도</option>
+					<option>전라도</option>
+				</select>
+			</li>
+			<li>
+				키 : 
+				<input type="range" name="height" min="140" max="200">
+			</li>
+			<li>
+				좋아하는 음식 (모두고르시오) : 
+				<input type="checkbox" name="food" value="한식">한식
+				<input type="checkbox" name="food" value="중식">중식
+				<input type="checkbox" name="food" value="일식">일식
+				<input type="checkbox" name="food" value="양식">양식
+				<input type="checkbox" name="food" value="분식">분식
+			</li>
+			<li>
+				<input type="submit">
+				<input type="reset">
+			</li>		
+		</ul>	
+	</form>
+
+</body>
+</html>
